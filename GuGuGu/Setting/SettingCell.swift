@@ -11,6 +11,7 @@ struct SettingCell: View {
     
     @State var SettingCellText: String
     
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 10.0)
             .frame(width: 340, height: 50)
@@ -27,6 +28,7 @@ struct SettingCell: View {
                 }
                 .padding(.horizontal, 18)
                 
+        
             }
         
     }
