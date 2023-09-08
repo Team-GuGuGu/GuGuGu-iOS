@@ -9,17 +9,20 @@ import SwiftUI
 
 struct SettingCell: View {
     
-    @State var SettingCellText: String
+    let text: String
     
+    init(_ text: String) {
+        self.text = text
+    }
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10.0)
             .frame(width: 340, height: 50)
-            .foregroundColor(Color("MainGray"))
+            .foregroundColor(Color("GuGuGu-gray"))
             .padding(.vertical, 5)
             .overlay {
                 HStack {
-                    Text("\(SettingCellText)")
+                    Text(text)
                         .font(.custom("Pretendard-SemiBold", size: 20))
                         .foregroundColor(Color(.label))
                     Spacer()
@@ -35,5 +38,5 @@ struct SettingCell: View {
 }
 
 #Preview {
-    SettingCell(SettingCellText: "급똥")
+    SettingCell("급똥")
 }
