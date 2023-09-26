@@ -17,8 +17,6 @@ struct MainView: View {
             MenuSwitch()
                 .padding(.top, 22)
             
-            
-            
             ScrollView {
                 MenuCell()
                 

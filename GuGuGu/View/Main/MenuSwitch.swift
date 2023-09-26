@@ -30,19 +30,20 @@ struct MenuSwitch: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(.black, lineWidth: 1)
                             }
-                            .animation(Animation.default.speed(1))
+                            .animation(Animation.default.speed(1), value: positionX)
                             .offset(x: positionX)
                             
                     }
                     HStack(spacing: 0) {
+                        
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 100)
                             .opacity(0)
-                            
                             .overlay {Image("Menu-breakfast")
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 30, height: 30)}
+                                    .scaledToFit()
+                                    .padding(5)
+                                    }
                             .onTapGesture {
                                 positionX = -100
                             }
@@ -50,13 +51,12 @@ struct MenuSwitch: View {
                         
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 100)
-                            
                             .opacity(0)
                             .overlay {
                                 Image("Menu-lunch")
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 30, height: 30)
+                                    .scaledToFit()
+                                    .padding(5)
                             }
                             .onTapGesture {
                                 positionX = 0
@@ -69,13 +69,13 @@ struct MenuSwitch: View {
                             .overlay{
                                 Image("Menu-dinner")
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 30, height: 30)
+                                    .scaledToFit()
+                                    .padding(5)
                             }
                             .onTapGesture {
                                 positionX = 100
                             }
-                        Spacer()
+                        
                     }
                 }
             }
