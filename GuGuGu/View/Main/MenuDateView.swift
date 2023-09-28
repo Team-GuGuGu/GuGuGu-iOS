@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct MenuDateView: View {
+    let dateFormatter = DateFormatter()
+    
+    init() {
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+    }
+
     var body: some View {
         HStack(spacing: 19) {
             Image(systemName: "chevron.left")
@@ -21,7 +27,7 @@ struct MenuDateView: View {
                 .foregroundStyle(Color.white)
                 .frame(width: 150, height: 40, alignment: .center)
                 .overlay(
-                    Text("2023년 8월 18일")
+                    Text(dateFormatter.string(from: Date.now))
                         .font(.custom("Pretendard-Medium", size: 15))
                         .foregroundStyle(Color.black)
                 )

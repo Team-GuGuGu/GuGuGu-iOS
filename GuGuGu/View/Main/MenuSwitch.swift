@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuSwitch: View {
     
-    @State var positionX: CGFloat = -100
+    @State var positionX: CGFloat = 0
     
     var body: some View {
         RoundedRectangle(cornerRadius: 100)
@@ -22,60 +22,68 @@ struct MenuSwitch: View {
             )
             .overlay {
                 ZStack {
-                    HStack(spacing: 0) {
-                        Color.white
-                            .frame(width: 100)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(.black, lineWidth: 1)
-                            }
-                            .animation(Animation.default.speed(1), value: positionX)
-                            .offset(x: positionX)
+                    GeometryReader { geometry in
+                        HStack(spacing: 0) {
+                            Color.white
+                                .frame(width: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(.black, lineWidth: 1)
+                                }
+                                .onAppear {
+                                    print(geometry.size.width)
+                                    positionX = geometry.size.width / 3 - (geometry.size.width / 3)
+                                }
+                                .animation(Animation.default.speed(1), value: positionX)
+                                .offset(x: positionX)
+                                
                             
-                    }
-                    HStack(spacing: 0) {
+                        }
                         
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 100)
-                            .opacity(0)
-                            .overlay {Image("Menu-breakfast")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(5)
-                                    }
-                            .onTapGesture {
-                                positionX = -100
-                            }
-                        
-                        
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 100)
-                            .opacity(0)
-                            .overlay {
-                                Image("Menu-lunch")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(5)
-                            }
-                            .onTapGesture {
-                                positionX = 0
-                            }
-                        
-                        
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 100)
-                            .opacity(0)
-                            .overlay{
-                                Image("Menu-dinner")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(5)
-                            }
-                            .onTapGesture {
-                                positionX = 100
-                            }
-                        
+                        HStack(spacing: 0) {
+                            
+                            Rectangle()
+                                .frame(width: 100)
+                                .opacity(0)
+                                .overlay {Image("Menu-breakfast")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding(5)
+                                }
+                                .onTapGesture {
+                                    self.positionX = geometry.size.width / 3 - (geometry.size.width / 3)
+                                }
+                            
+                            
+                            Rectangle()
+                                .frame(width: 100)
+                                .opacity(0)
+                                .overlay {
+                                    Image("Menu-lunch")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding(5)
+                                }
+                                .onTapGesture {
+                                    self.positionX = geometry.size.width / 3
+                                }
+                            
+                            
+                            Rectangle()
+                                .frame(width: 100)
+                                .opacity(0)
+                                .overlay{
+                                    Image("Menu-dinner")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding(5)
+                                }
+                                .onTapGesture {
+                                    self.positionX = geometry.size.width / 3 + (geometry.size.width / 3)
+                                }
+                            
+                        }
                     }
                 }
             }
