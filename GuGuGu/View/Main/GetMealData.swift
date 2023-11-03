@@ -13,10 +13,10 @@ struct DataModel: Codable {
 }
 
 struct MealData: Codable, Hashable {
-    let menu: String
-    let allergy: String
-    let calorie: String
-    let time: String
+    var menu: String = "존재하지 않습니다."
+    var allergy: String = ""
+    var calorie: String = "0 Kcal"
+    var time: String = "breakfast"
 }
 
 
@@ -59,6 +59,11 @@ struct GetMealData {
                 
             case .failure(let error):
                 print(error)
+                
+                mealData = [MealData(menu: "불러오지 못했습니다.", time: "breakfast"),
+                            MealData(menu: "불러오지 못했습니다.", time: "lunch"),
+                            MealData(menu: "불러오지 못했습니다.", time: "dinner")
+                            ]
             }
             
         }

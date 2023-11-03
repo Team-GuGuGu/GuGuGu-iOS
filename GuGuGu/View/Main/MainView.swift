@@ -25,7 +25,7 @@ struct MainView: View {
     
     @State var menuHeight: CGFloat = 200
     
-    @State var mealData: [MealData] = [MealData(menu: "", allergy: "", calorie: "", time: "")]
+    @State var mealData: [MealData] = [MealData()]
     
     var body: some View {
         
@@ -51,13 +51,16 @@ struct MainView: View {
                                 
                             }
                             
-                            
-                            
                         }
                     }
+                   
                 
                     
                 }
+                .refreshable {
+                    GetMealData(mealData: $mealData, date: $date).get()
+                }
+                
                 
             }
             .onAppear {
