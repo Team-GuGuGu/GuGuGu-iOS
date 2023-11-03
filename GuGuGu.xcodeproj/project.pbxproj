@@ -37,7 +37,6 @@
 		75F3EBED2A8F84CD00A329C8 /* MakersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F3EBEC2A8F84CD00A329C8 /* MakersView.swift */; };
 		75F57BEA2AC1692000790E23 /* MenuSwitchExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F57BE92AC1692000790E23 /* MenuSwitchExtension.swift */; };
 		75FA139A2AF4845E00EDB8F9 /* GetMealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA13992AF4845E00EDB8F9 /* GetMealData.swift */; };
-		75FA139C2AF4863100EDB8F9 /* transTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA139B2AF4863100EDB8F9 /* transTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +70,6 @@
 		75F3EBEC2A8F84CD00A329C8 /* MakersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersView.swift; sourceTree = "<group>"; };
 		75F57BE92AC1692000790E23 /* MenuSwitchExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSwitchExtension.swift; sourceTree = "<group>"; };
 		75FA13992AF4845E00EDB8F9 /* GetMealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMealData.swift; sourceTree = "<group>"; };
-		75FA139B2AF4863100EDB8F9 /* transTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,12 +103,8 @@
 		7541929A2A8E2E8A00C07D86 /* GuGuGu */ = {
 			isa = PBXGroup;
 			children = (
-				7541929B2A8E2E8A00C07D86 /* GuGuGuApp.swift */,
-				75F57BE82AC168EF00790E23 /* View */,
-				75F3EBE62A8F824F00A329C8 /* CustomBackButton.swift */,
-				7541929F2A8E2E8E00C07D86 /* Assets.xcassets */,
-				754B88BA2A8F09C900A18A7D /* Fonts */,
-				754192A12A8E2E8E00C07D86 /* Preview Content */,
+				75FA139E2AF49F2F00EDB8F9 /* Resources */,
+				75FA139D2AF49F2500EDB8F9 /* Sources */,
 			);
 			path = GuGuGu;
 			sourceTree = "<group>";
@@ -172,7 +166,6 @@
 				757998532AA9F84100096D91 /* MenuCell.swift */,
 				757998552AA9FE3200096D91 /* MenuCalorieCell.swift */,
 				757998572AAA021200096D91 /* MenuAllergieCell.swift */,
-				75FA139B2AF4863100EDB8F9 /* transTime.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -185,6 +178,26 @@
 				754B88B92A8F08CD00A18A7D /* LaunchScreen */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		75FA139D2AF49F2500EDB8F9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7541929B2A8E2E8A00C07D86 /* GuGuGuApp.swift */,
+				75F3EBE62A8F824F00A329C8 /* CustomBackButton.swift */,
+				75F57BE82AC168EF00790E23 /* View */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		75FA139E2AF49F2F00EDB8F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7541929F2A8E2E8E00C07D86 /* Assets.xcassets */,
+				754B88BA2A8F09C900A18A7D /* Fonts */,
+				754192A12A8E2E8E00C07D86 /* Preview Content */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +292,6 @@
 				75F3EBED2A8F84CD00A329C8 /* MakersView.swift in Sources */,
 				75F3EBEB2A8F84A600A329C8 /* TermsView.swift in Sources */,
 				754B88DC2A8F14D200A18A7D /* SettingView.swift in Sources */,
-				75FA139C2AF4863100EDB8F9 /* transTime.swift in Sources */,
 				75F3EBE92A8F845F00A329C8 /* PrivacyPolicyView.swift in Sources */,
 				75F3EBE52A8F81E500A329C8 /* SchoolChangeView.swift in Sources */,
 				7541929C2A8E2E8A00C07D86 /* GuGuGuApp.swift in Sources */,
