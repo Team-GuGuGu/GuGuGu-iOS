@@ -9,55 +9,78 @@ import SwiftUI
 
 struct MenuSwitch: View {
     
-    @State var positionX: CGFloat = 0
+    @Binding var meal: MainView.MealTime
+    
+    let width: CGFloat
+    
+    init(meal: Binding<MainView.MealTime>, width: CGFloat) {
+        self._meal = meal
+        self.width = width
+    }
+    
+    func mealPos(meal: MainView.MealTime) -> CGFloat {
+        
+        if meal == .breakfast {
+            return 0
+        }
+        if meal == .lunch {
+            return width / 3
+        }
+        if meal == .dinner {
+            return width / 3 * 2
+        }
+        
+        return 0
+        
+    }
     
     var body: some View {
         RoundedRectangle(cornerRadius: 100)
             .switchShadow()
             .foregroundStyle(.white)
-            .frame(width: 300, height: 40)
-            .background(
-                RoundedRectangle(cornerRadius: 100)
-                    .stroke(.black, lineWidth: 1)
-            )
+            .frame(width: width, height: 40)
+           
+        
             .overlay {
                 ZStack {
+                    RoundedRectangle(cornerRadius: 99)
+                        .strokeBorder(.black, lineWidth: 1)
+                    
                     GeometryReader { geometry in
                         HStack(spacing: 0) {
+                            
                             Color.white
-                                .frame(width: 100)
+                                .frame(width: width / 3)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 20)
                                         .stroke(.black, lineWidth: 1)
                                 }
-                                .onAppear {
-                                    print(geometry.size.width)
-                                    positionX = geometry.size.width / 3 - (geometry.size.width / 3)
-                                }
-                                .animation(Animation.default.speed(1), value: positionX)
-                                .offset(x: positionX)
-                                
+                                .offset(x: mealPos(meal: meal))
+                            
                             
                         }
                         
                         HStack(spacing: 0) {
                             
                             Rectangle()
-                                .frame(width: 100)
+                                .frame(width: width / 3)
                                 .opacity(0)
-                                .overlay {Image("Menu-breakfast")
+                                .overlay {
+                                    Image("Menu-breakfast")
                                         .resizable()
                                         .scaledToFit()
                                         .padding(5)
                                 }
                                 .onTapGesture {
-                                    self.positionX = geometry.size.width / 3 - (geometry.size.width / 3)
+                                    withAnimation {
+                                        meal = .breakfast
+                                    }
                                 }
                             
                             
                             Rectangle()
-                                .frame(width: 100)
+                                .frame(width: width / 3)
                                 .opacity(0)
                                 .overlay {
                                     Image("Menu-lunch")
@@ -66,21 +89,25 @@ struct MenuSwitch: View {
                                         .padding(5)
                                 }
                                 .onTapGesture {
-                                    self.positionX = geometry.size.width / 3
+                                    withAnimation {
+                                        meal = .lunch
+                                    }
                                 }
                             
                             
                             Rectangle()
-                                .frame(width: 100)
+                                .frame(width: width / 3)
                                 .opacity(0)
-                                .overlay{
+                                .overlay {
                                     Image("Menu-dinner")
                                         .resizable()
                                         .scaledToFit()
                                         .padding(5)
                                 }
                                 .onTapGesture {
-                                    self.positionX = geometry.size.width / 3 + (geometry.size.width / 3)
+                                    withAnimation {
+                                        meal = .dinner
+                                    }
                                 }
                             
                         }
@@ -93,7 +120,4 @@ struct MenuSwitch: View {
     }
 }
 
-#Preview {
-    MenuSwitch()
-}
 

@@ -8,47 +8,69 @@
 import SwiftUI
 
 struct MenuCell: View {
+    
+    var menu: String
+    
+    let width: CGFloat
+    
+    var time: String
+    
+    @State var height: CGFloat = 200
+    
+    init(menu: String, width: CGFloat, time: String) {
+        self.menu = menu
+        self.width = width
+        self.time = time
+    }
+    
+    
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(Color.black, lineWidth: 1)
-            .frame(width: 360, height: 215)
+            .strokeBorder(Color.black, lineWidth: 1)
+            .frame(width: width, height: height)
             .foregroundStyle(.white)
             .overlay {
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: 8) {
                     HStack(spacing: 0) {
-                        Image("Menu-breakfast")
+                        Image("Menu-\(time)")
                             .resizable()
                             .frame(width: 60, height: 60)
                         
-                        Text("아침")
+                        Text("\(transTime(time: time))")
                             .foregroundStyle(Color.black)
                             .font(Font.custom("Pretendard-SemiBold", size: 25))
                             .padding(.leading, 10)
                         
                         Spacer()
                     }
-                    .padding(.top, 12)
                     
-                    Text("오늘의 아침은?")
+                    Text("오늘의 \(transTime(time: time))은?")
                         .foregroundStyle(Color.black)
                         .font(Font.custom("Pretendard-Bold", size: 15))
-                        .padding(.top, 10)
                     
+                    HStack {
+                        Text("\(menu)")
+                            .foregroundStyle(Color.black)
+                            .font(Font.custom("Pretendard-Bold", size: 14))
+                            .multilineTextAlignment(.leading)
+                            .onAppear {
+                                height += CGFloat(menu.filter { $0 == "\n"}.count) * 10
+                            }
+                            
+                        
+                        Spacer()
+                    }
                     
-                    Text("치즈닭갈비주먹밥\n깍두기\n*고래밥시리얼+우유\n배도라지주스\n감자토마토그라탕")
-                        .foregroundStyle(Color.black)
-                        .font(Font.custom("Pretendard-Bold", size: 14))
-                        .padding(.top, 5)
-                    
-                    Spacer()
+                    Spacer(minLength: 0)
                 }
+                .padding(.top, 12)
                 .padding(.leading, 15)
                 
             }
         
+        
     }
 }
 
-#Preview {
-    MenuCell()
-}
+

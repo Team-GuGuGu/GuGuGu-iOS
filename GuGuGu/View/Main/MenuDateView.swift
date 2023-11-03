@@ -8,41 +8,62 @@
 import SwiftUI
 
 struct MenuDateView: View {
+    
+    @Binding var date: Date
+    @Binding var mealData: [MealData]
+    
     let dateFormatter = DateFormatter()
     
-    init() {
+    let width: CGFloat
+    
+    init(date: Binding<Date>, mealData: Binding<[MealData]>, width: CGFloat) {
+        self._date = date
+        self._mealData = mealData
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        self.width = width
     }
-
+    
+    func changeDate(value: Int) {
+        
+        date = Calendar.current.date(byAdding: .day, value: value, to: date) ?? date
+        GetMealData(mealData: $mealData, date: $date).get()
+    }
+    
     var body: some View {
         HStack(spacing: 19) {
             Image(systemName: "chevron.left")
                 .resizable()
-                .scaledToFill()
-                .frame(width: 12, height: 26)
+                .scaledToFit()
+                .frame(height: 26)
                 .foregroundStyle(Color.black)
+                .onTapGesture {
+                    changeDate(value: -1)
+                }
             
             RoundedRectangle(cornerRadius: 20.0)
-                .stroke(.black, lineWidth: 1)
+                .strokeBorder(.black, lineWidth: 1)
                 .foregroundStyle(Color.white)
-                .frame(width: 150, height: 40, alignment: .center)
+                .frame(width: width, height: 40, alignment: .center)
                 .overlay(
-                    Text(dateFormatter.string(from: Date.now))
+                    Text(dateFormatter.string(from: date))
                         .font(.custom("Pretendard-Medium", size: 15))
                         .foregroundStyle(Color.black)
                 )
             
             Image(systemName: "chevron.right")
                 .resizable()
-                .scaledToFill()
-                .frame(width: 12, height: 26)
+                .scaledToFit()
+                .frame(height: 26)
                 .foregroundStyle(Color.black)
-        }
+                .onTapGesture {
+                    changeDate(value: 1)
+                }
             
+            
+        }
+        
     }
     
 }
 
-#Preview {
-    MenuDateView()
-}
+

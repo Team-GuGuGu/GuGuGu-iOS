@@ -8,10 +8,19 @@
 import SwiftUI
 
 struct MenuAllergieCell: View {
+    
+    var allergy: String
+    let width: CGFloat
+    
+    init(allergy: String, width: CGFloat) {
+        self.allergy = allergy
+        self.width = width
+    }
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(.black, lineWidth: 1)
-            .frame(width: 360, height: 115)
+            .strokeBorder(.black, lineWidth: 1)
+            .frame(width: width, height: 115)
             .foregroundStyle(.white)
             .overlay {
                 HStack(spacing: 0) {
@@ -23,7 +32,7 @@ struct MenuAllergieCell: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("알러지 정보는?")
                             .font(Font.custom("Pretendard-SemiBold", size: 25))
-                        Text("②우유 ⑤대두 ⑥밀 ⑨새우 ⑬아황산류 ⑮닭고기")
+                        Text("\(allergy)")
                             .font(Font.custom("Pretendard-Bold", size: 14))
                             .padding(.top, 5)
                     }
@@ -34,8 +43,4 @@ struct MenuAllergieCell: View {
                 .padding(.leading, 14)
             }
     }
-}
-
-#Preview {
-    MenuAllergieCell()
 }

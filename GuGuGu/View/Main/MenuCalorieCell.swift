@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct MenuCalorieCell: View {
+    
+    var calorie: String
+    let width: CGFloat
+    var time: String
+    
+    init(calorie: String, width: CGFloat, time: String) {
+        self.calorie = calorie
+        self.width = width
+        self.time = time
+    }
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(.black, lineWidth: 1)
-            .frame(width: 360, height: 115)
+            .strokeBorder(.black, lineWidth: 1)
+            .frame(width: width, height: 115)
             .foregroundStyle(.white)
             .overlay {
                 HStack(spacing: 0) {
@@ -21,9 +32,9 @@ struct MenuCalorieCell: View {
                         .frame(width: 60, height: 60)
                     
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("아침의 칼로리는?")
+                        Text("\(transTime(time: time))의 칼로리는?")
                             .font(Font.custom("Pretendard-SemiBold", size: 25))
-                        Text("482.4 Kcal")
+                        Text("\(calorie)")
                             .font(Font.custom("Pretendard-SemiBold", size: 20))
                     }
                     .padding(.leading, 2)
@@ -35,6 +46,3 @@ struct MenuCalorieCell: View {
     }
 }
 
-#Preview {
-    MenuCalorieCell()
-}
