@@ -13,10 +13,10 @@ struct DataModel: Codable {
 }
 
 struct MealData: Codable, Hashable {
-    var menu: String = "존재하지 않습니다."
+    let menu: String
     var allergy: String = ""
     var calorie: String = "0 Kcal"
-    var time: String = "breakfast"
+    let time: String
 }
 
 

@@ -27,39 +27,48 @@ struct MenuDateView: View {
         
         date = Calendar.current.date(byAdding: .day, value: value, to: date) ?? date
         GetMealData(mealData: $mealData, date: $date).get()
+        
     }
     
     var body: some View {
         HStack(spacing: 19) {
-            Image(systemName: "chevron.left")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 26)
-                .foregroundStyle(Color.black)
-                .onTapGesture {
-                    changeDate(value: -1)
-                }
+            Button {
+                changeDate(value: -1)
+            } label: {
+                
+                Image(systemName: "chevron.left")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 26)
+                    .foregroundStyle(Color.black)
+                    
+            }
             
-            RoundedRectangle(cornerRadius: 20.0)
-                .strokeBorder(.black, lineWidth: 1)
-                .foregroundStyle(Color.white)
-                .frame(width: width, height: 40, alignment: .center)
-                .overlay(
-                    Text(dateFormatter.string(from: date))
-                        .font(.custom("Pretendard-Medium", size: 15))
-                        .foregroundStyle(Color.black)
-                )
+            Button { 
+                date = Date.now
+                GetMealData(mealData: $mealData, date: $date).get()
+            } label: {
+                RoundedRectangle(cornerRadius: 20.0)
+                    .strokeBorder(.black, lineWidth: 1)
+                    .foregroundStyle(Color.white)
+                    .frame(width: width, height: 40, alignment: .center)
+                    .overlay(
+                        Text(dateFormatter.string(from: date))
+                            .font(.custom("Pretendard-Medium", size: 15))
+                            .foregroundStyle(Color.black)
+                    )
+            }
             
-            Image(systemName: "chevron.right")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 26)
-                .foregroundStyle(Color.black)
-                .onTapGesture {
-                    changeDate(value: 1)
-                }
-            
-            
+            Button {
+                changeDate(value: 1)
+            } label: {
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 26)
+                    .foregroundStyle(Color.black)
+                   
+            }
         }
         
     }

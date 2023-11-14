@@ -13,20 +13,20 @@ struct LaunchScreenView: View {
     var body: some View {
         ZStack {
             background
-            VStack {
+            VStack(spacing: 72) {
                 logo
-                    .padding(.bottom, 72)
-                    
-                    
-                Text("밥먹자")
-                    .font(.custom("Pretendard-Bold", size: 35))
-                Text("구구구")
-                    .font(.custom("Pretendard-Bold", size: 50))
-                    
+                
+                VStack(spacing: 0) {
+                    Text("밥먹자")
+                        .font(.custom("Pretendard-Bold", size: 35))
+                    Text("구구구")
+                        .font(.custom("Pretendard-Bold", size: 50))
+                }
+                
             }
+            
         }
-        
-            }
+    }
 }
 
 #Preview {
@@ -35,9 +35,7 @@ struct LaunchScreenView: View {
 
 private extension LaunchScreenView {
     var background: some View {
-        Color("LaunchScreen-background")
-            .edgesIgnoringSafeArea(.all)
-        
+        Color.white
     }
     
     var logo: some View {

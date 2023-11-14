@@ -25,7 +25,7 @@ struct MainView: View {
     
     @State var menuHeight: CGFloat = 200
     
-    @State var mealData: [MealData] = [MealData()]
+    @State var mealData: [MealData] = [MealData(menu: "", time: "")]
     
     var body: some View {
         
@@ -38,23 +38,25 @@ struct MainView: View {
                 MenuSwitch(meal: $meal, width: proxy.size.width / 1.31)
                 
                 ScrollView {
-                    VStack(spacing: 22) {
-                        
-                        ForEach(mealData, id: \.self) { data in
-                            if data.time == "breakfast" && meal == .breakfast || data.time == "lunch" && meal == .lunch || data.time == "dinner" && meal == .dinner {
-                                
-                                MenuCell(menu: data.menu, width: proxy.size.width / 1.09, time: data.time)
-                                
-                                MenuCalorieCell(calorie: data.calorie, width: proxy.size.width / 1.09, time: data.time)
-                                
-                                MenuAllergieCell(allergy: data.allergy, width: proxy.size.width / 1.09)
-                                
-                            }
+                    ForEach(mealData, id: \.self) { data in
+                        if data.time == "breakfast" && meal == .breakfast || data.time == "lunch" && meal == .lunch || data.time == "dinner" && meal == .dinner {
+                            
+                            MenuCell(menu: data.menu, width: proxy.size.width / 1.09, time: data.time)
+                            
+                            Spacer(minLength: 22)
+                            
+                            MenuCalorieCell(calorie: data.calorie, width: proxy.size.width / 1.09, time: data.time)
+                            
+                            Spacer(minLength: 22)
+                            
+                            MenuAllergieCell(allergy: data.allergy, width: proxy.size.width / 1.09)
+                            
+                            Spacer()
                             
                         }
+                        
                     }
-                   
-                
+                    
                     
                 }
                 .refreshable {

@@ -7,37 +7,54 @@
 
 import SwiftUI
 
+struct DateModel: Codable {
+    let data: [SchoolModel]
+}
+
+struct SchoolModel: Codable, Hashable {
+    let schoolCode: String
+    let schoolName: String
+    let local: String
+}
+
 struct SchoolChangeView: View {
-    @State private var searchText: String = ""
-    
-    let schools = ["school1", "school2", "school3", "school4"]
-    
-    var searchResults: [String] {
-        if searchText.isEmpty {
-            return schools
-        } else {
-            return schools.filter { $0.contains(searchText) }
-        }
-    }
+    @State var search: String = ""
+    @State var schoolModel: [SchoolModel]?
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(searchResults, id: \.self) { name in
-                    NavigationLink {
-                        Text("\(name)")
-                    } label: {
-                        Text(name)
-                    }
+        VStack {
+            HStack {
+                VStack {
+                    TextField("학교 이름을 입력하세요", text: $search)
+                    
+                    Rectangle()
+                        .frame(height: 1)
+                    
+                }
+                
+                Button {
+                    
+                } label: {
+                    Text("검색")
                 }
             }
-        }
-        .searchable(text: $searchText, prompt: "학교 검색")
-        .textInputAutocapitalization(.never)
-        
-        .refreshable {
+            .padding(.horizontal, 20)
             
+            ScrollView {
+                Spacer(minLength: 30)
+                
+                VStack(spacing: 30) {
+                    ForEach(1..<10) { _ in
+                        SchoolChangeCell(text: "대구소프트웨어마이스터고등학교")
+                    }
+                    
+                    
+                }
+                
+            }
         }
+        
+        
     }
     
 }
